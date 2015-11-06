@@ -10,8 +10,8 @@
     "Gruntfile.js",
     "sass",
     "bower_components",
-    "node_modules",
-    "test"
+    "node_modules"
+  
   ],
   "dependencies": {
     "moment": "~2.10.6",
