@@ -45,7 +45,7 @@ Rangepicker modal component.
         </template>
       </div>
       <div class="flex flex--right border--top u-p-">
-        <button class="btn" on-click="_closeAndReturnFocus">Cancel</button>
+        <button class="btn" on-click="_closeAndReturnFocus" id="cancelButton">Cancel</button>
         <button class$="{{submitBtnClasses('btn btn--primary', isSubmitButtonValid)}}" type=submit on-click="_submit" id="submitButton" disabled="{{!isSubmitButtonValid}}"><i class$="{{displayOptions.submitButtonIcon}}"></i>{{displayOptions.submitButtonText}}</button>
       </div>
     </div>
