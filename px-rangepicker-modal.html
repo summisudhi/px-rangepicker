@@ -7,9 +7,7 @@
 
 <!--
 Rangepicker modal component.
-
 ##### Usage
-
     <px-rangepicker-modal from={{...}} to={{...}}>
     </px-rangepicker-modal>
 -->
@@ -45,7 +43,7 @@ Rangepicker modal component.
         </template>
       </div>
       <div class="flex flex--right border--top u-p-">
-        <button class="btn" on-click="_closeAndReturnFocus">Cancel</button>
+        <button class="btn" on-click="_closeAndReturnFocus" id="cancelButton">Cancel</button>
         <button class$="{{submitBtnClasses('btn btn--primary', isSubmitButtonValid)}}" type=submit on-click="_submit" id="submitButton" disabled="{{!isSubmitButtonValid}}"><i class$="{{displayOptions.submitButtonIcon}}"></i>{{displayOptions.submitButtonText}}</button>
       </div>
     </div>
@@ -54,11 +52,8 @@ Rangepicker modal component.
 
 <script>
   Polymer({
-
     is: 'px-rangepicker-modal',
-
     properties: {
-
       /**
        * Moment object start date & time for range picker
        */
@@ -66,7 +61,6 @@ Rangepicker modal component.
         type: Object,
         notify: true
       },
-
       /**
        * Moment object end date & time for range picker
        */
@@ -74,7 +68,6 @@ Rangepicker modal component.
         type: Object,
         notify: true
       },
-
       /**
        * (optional)
        *
@@ -88,7 +81,6 @@ Rangepicker modal component.
         type: Boolean,
         value: false
       },
-
       /**
        * (optional)
        *
@@ -112,7 +104,6 @@ Rangepicker modal component.
        * @default no presets
        */
       presetRanges: Object,
-
       /**
        * True if the modal is hidden.  Must be declared as a property to reference (below) in IE 10.
        * @private
@@ -145,7 +136,6 @@ Rangepicker modal component.
     behaviors: [validate],
     ready: function() {
       var self = this;
-
       this.$.rangepickerModal.addEventListener('px-preset-selected', function(e) {
         var presetStartDateTime = e.detail.startDateTime;
         var presetEndDateTime = e.detail.endDateTime;
@@ -166,26 +156,21 @@ Rangepicker modal component.
         this.toggleAttribute('hidden', false);
       }
     },
-
     /**
      * Close the modal
      */
     close: function() {
       this.toggleAttribute('hidden', true);
     },
-
     _closeAndReturnFocus: function() {
       this.close();
       this.fire('px-modal-close-clicked');
     },
-
     _isClosed: function() {
       return this.hidden;
     },
-
     _submit: function() {
       this.fire('px-submit-range');
     }
-
   });
 </script>

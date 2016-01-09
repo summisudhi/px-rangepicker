@@ -2,9 +2,9 @@ module.exports = {
   verbose: true,
   plugins: {
     local: {
-      browsers: ['chrome', 'firefox']
+      browsers: ['chrome']
     }
   },
 
-  suites: ['test/rangepicker-fixture.html','test/fixtests.html']
+  suites: ['test/fixtests.html']
 };

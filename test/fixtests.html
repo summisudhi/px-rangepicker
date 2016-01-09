@@ -8,6 +8,8 @@
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../moment/moment.js"></script>
 
+  <link rel="import" href="../px-theme/px-theme.html"/>
+
   <link rel="import" href="../px-rangepicker.html"/>
 
 </head>
@@ -33,8 +35,9 @@ describe('when select date in calendar', function() {
     label = top_to_time.querySelector('input');
     top_from_time_input = top_from_time.querySelector('input');
     bottom_from_time_input = bottom_from_time.querySelector('input');
-    cancelButton = document.getElementsByClassName('btn style-scope px-rangepicker-modal')[0];
+    //cancelButton = document.getElementsByClassName('btn style-scope px-rangepicker-modal')[0];
     applyButton = document.querySelector('#submitButton');
+    cancelButton = document.querySelector('#cancelButton');
 
 
 
@@ -46,8 +49,8 @@ describe('when select date in calendar', function() {
 
     label.addEventListener('click', function () {
 
-      assert.equal(document.getElementById('rangepickerModal').style.visibility,"");
 
+assert.equal(getComputedStyle(document.querySelector('#rangePickerModal')).visibility,"visible");
 
 
 
@@ -56,74 +59,74 @@ describe('when select date in calendar', function() {
 
 
 
+
   };
 
 
 
-  it('Modal opens and time changes from modal to time field to rangefield to time field reflects', function(done) {
-    initializeAllFields();
-
-
-        bottom_to_time_input.addEventListener('change',function() {
-
-
-
-          assert.equal(top_to_time_input.value, bottom_to_time_input.value);
-
-          done();
-        });
-
-
-if(getComputedStyle(document.querySelector('#rangePickerModal')).visibility == "hidden") {
-  openRangepickerModal();
-
-};
-    bottom_to_time_input.value = '10:08:58 PM';
-        bottom_to_time_input.dispatchEvent(new Event ('change'));
-
-
-
-
-
-
-  });
-
-  it('Modal opens and time changes from modal from time field to rangefield from time field reflects', function(done) {
-    initializeAllFields();
-
-
-    bottom_from_time_input.addEventListener('change',function() {
-
-
-
-      assert.equal(top_from_time_input.value, bottom_from_time_input.value);
-
-      done();
-    });
-
-
-
-    if(getComputedStyle(document.querySelector('#rangePickerModal')).visibility == "hidden") {
-      openRangepickerModal();
-
-    };
-
-
-
-
-      bottom_from_time_input.value = '10:08:58 PM';
-      bottom_from_time_input.dispatchEvent(new Event ('change'));
-
-
-
-
-
-  });
-
-
-
-
-//  it('Modal opens and time changes from modal from time field to rangefield from time field reverts on clicking cancel button', function(done) {
+//  it('Modal opens and time changes from modal to time field to rangefield to time field reflects', function(done) {
+//    initializeAllFields();
+//
+//
+//        bottom_to_time_input.addEventListener('change',function() {
+//
+//
+//
+//          assert.equal(top_to_time_input.value, bottom_to_time_input.value);
+//
+//          done();
+//        });
+//
+//
+//if(getComputedStyle(document.querySelector('#rangePickerModal')).visibility == "hidden") {
+//  openRangepickerModal();
+//
+//};
+//    bottom_to_time_input.value = '10:08:58 PM';
+//        bottom_to_time_input.dispatchEvent(new Event ('change'));
+//
+//
+//
+//
+//
+//
+//  });
+//
+//  xit('Modal opens and time changes from modal from time field to rangefield from time field reflects', function(done) {
+//    initializeAllFields();
+//
+//
+//    bottom_from_time_input.addEventListener('change',function() {
+//
+//
+//
+//      assert.equal(top_from_time_input.value, bottom_from_time_input.value);
+//
+//      done();
+//    });
+//
+//
+//
+//    if(getComputedStyle(document.querySelector('#rangePickerModal')).visibility == "hidden") {
+//      openRangepickerModal();
+//
+//    };
+//
+//
+//
+//
+//      bottom_from_time_input.value = '10:08:58 PM';
+//      bottom_from_time_input.dispatchEvent(new Event ('change'));
+//
+//
+//
+//
+//
+//  });
+//
+//
+//
+//  it('Modal opens and time changes from modal from time field to rangefield from time field closes the modal on clicking apply button', function() {
 //
 //    initializeAllFields();
 //
@@ -132,30 +135,6 @@ if(getComputedStyle(document.querySelector('#rangePickerModal')).visibility == "
 //
 //    };
 //
-//before_change_from_time = top_from_time_input.value;
-//
-//
-//    cancelButton.addEventListener('click', function () {
-//
-//
-// // alert(top_from_time_input.value + ' ' + before_change_from_time );
-//
-//    assert.equal(top_from_time_input.value, before_change_from_time);
-//
-//    done();
-//    });
-//
-//
-//
-//    bottom_from_time_input.addEventListener('change',function(){
-//
-//
-//     // assert.equal(top_from_time_input.value,'10:20:25 PM');
-//
-//      cancelButton.dispatchEvent(new Event('click'));
-//
-//
-//    })
 //
 //
 //    bottom_from_time_input.value ="10:20:25 PM";
@@ -163,13 +142,44 @@ if(getComputedStyle(document.querySelector('#rangePickerModal')).visibility == "
 //
 //    bottom_from_time_input.dispatchEvent(new Event('change'));
 //
+//    assert.equal(getComputedStyle(applyButton).visibility,'visible');
+//    assert.equal(getComputedStyle(document.querySelector('#rangePickerModal')).visibility,"visible");
 //
-//   });
+//    applyButton.dispatchEvent(new Event('click'));
+//
+//
+//
+//
+//
+//    assert.equal(getComputedStyle(document.querySelector('#rangePickerModal')).visibility,"hidden");
+//    assert.equal(top_from_time_input.value, bottom_from_time_input.value);
+//
+//  });
+
+  it('Modal closes and time changes are reverted from modal to outside world on clicking cancel button', function(done) {
+
+      var timeValue = document.querySelector('#rangeFields #toTime input').value;
+      var thisDone = done;
+      var cancelButton = document.querySelector('#rangepickerModal #cancelButton');
+      var rangeFieldsToTime = document.querySelector('#rangeFields #toTime input');
+      var rangepickerModalToTime = document.querySelector('#rangepickerModal #toTime input');
+
+      cancelButton.addEventListener('click', function() {
+        assert.equal(timeValue, rangeFieldsToTime.value);
+        thisDone();
+      })
+      rangepickerModalToTime.addEventListener('change', function(){
+        cancelButton.dispatchEvent(new Event('click'));
+      });
+      rangeFieldsToTime.addEventListener('click', function(){
+        rangepickerModalToTime.value = '10:07:00 PM';
+        rangepickerModalToTime.dispatchEvent(new Event('change'));
+      });
+
+      rangeFieldsToTime.dispatchEvent(new Event('click'));
 
 
-
-
-
+});
 
 
 
