@@ -178,7 +178,10 @@ Component with all the date/time range fields which are displayed in the range p
      * Return focus to the range field which was last focused on.
      */
     returnLastFocus: function() {
-      this.lastFocusedElement.focus();
+
+      if (this.lastFocusedElement instanceof HTMLElement) {
+        this.lastFocusedElement.focus();
+      }
     },
 
     _toggleFocusToFrom: function(isFromFocused) {
