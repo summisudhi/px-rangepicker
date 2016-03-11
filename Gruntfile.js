@@ -56,6 +56,12 @@ module.exports = function(grunt) {
                 'css/noprefix/px-calendar-sketch.css': 'sass/px-calendar-sketch.scss',
                 'css/noprefix/px-calendar.css': 'sass/px-calendar-predix.scss'
             }
+        },
+        buttons: {
+            files: {
+                'css/noprefix/px-date-time-buttons-sketch.css': 'sass/px-date-time-buttons-sketch.scss',
+                'css/noprefix/px-date-time-buttons.css': 'sass/px-date-time-buttons-predix.scss'
+            }
         }
     },
 

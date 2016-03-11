@@ -39,8 +39,8 @@
         Time Series Chart is from <b>{{sampleData.range.from}}</b> to <b>{{sampleData.range.to}}</b>
       </div>
 
-      <button onclick="change2014()">Change to Nov/Dec 2014</button>
-      <button onclick="change2013()">Change to March/April 2013</button>
+      <!-- <button onclick="change2014()">Change to Nov/Dec 2014</button>
+      <button onclick="change2013()">Change to March/April 2013</button> -->
 
       <br />
       <br />
@@ -51,6 +51,12 @@
 
       <!-- with/without presets -->
       <div style="position: relative;">
+        <px-range-fields
+          from="{{sampleData.range.from}}"
+          to="{{sampleData.range.to}}"
+          
+          >
+        </px-range-fields>
         <px-rangepicker range="{{sampleData.range}}">
         </px-rangepicker>
       </div>
@@ -59,7 +65,6 @@
                       <!--preset-ranges="{{sampleData.presetRanges}}"-->
                       <!--allow-future-dates>-->
       <!--</px-rangepicker>-->
-
 
   </template>
 
@@ -74,7 +79,7 @@
 
       var presets = [
         {
-          "displayText": "Last Day",
+          "displayText": "Yesterday",
           "startDateTime": oneDay.toISOString(),
           "endDateTime": now.toISOString()
         },

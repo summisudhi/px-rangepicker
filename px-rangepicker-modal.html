@@ -2,6 +2,7 @@
 <link rel="import" href="px-time-rangepicker.html"/>
 <link rel="import" href="px-date-rangepicker.html"/>
 <link rel="import" href="px-rangepicker-presets.html"/>
+<link rel="import" href="px-date-time-buttons.html"/>
 
 <script src="../moment/moment.js"></script>
 
@@ -45,8 +46,7 @@ Rangepicker modal component.
         </template>
       </div>
       <div class="flex flex--right border--top u-p-">
-        <button class="btn" on-click="_closeAndReturnFocus">Cancel</button>
-        <button class$="{{submitBtnClasses('btn btn--primary', isSubmitButtonValid)}}" type=submit on-click="_submit" id="submitButton" disabled="{{!isSubmitButtonValid}}"><i class$="{{displayOptions.submitButtonIcon}}"></i>{{displayOptions.submitButtonText}}</button>
+        <px-date-time-buttons></px-date-time-buttons>
       </div>
     </div>
   </template>
@@ -142,6 +142,12 @@ Rangepicker modal component.
     observers: [
       '_submitButtonState(isSubmitButtonValid)'
     ],
+    listeners:{
+      /**
+       * Listener for the button clicks in px-date-time-buttons
+       */
+      'date-time-button':'_dateTimeButtons'
+    },
     behaviors: [validate],
     ready: function() {
       var self = this;
@@ -196,6 +202,18 @@ Rangepicker modal component.
 
     _submit: function() {
       this.fire('px-submit-range');
+    },
+    /**
+     * catching event from px-date-time-buttons and calls appropriate local function
+     */
+    _dateTimeButtons:function(e){
+      var normalizedEvent = Polymer.dom(e);
+      if(normalizedEvent.event.detail.action){
+        this._submit();
+      } else {
+        this._closeAndReturnFocus();
+      }
+      e.stopPropagation();
     }
 
   });

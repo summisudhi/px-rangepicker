@@ -1,0 +1,130 @@
+<script src="../moment/moment.js"></script>
+
+<script>
+
+/*
+  Name:
+  pxDateTimeCommon
+
+  Description:
+  blah blah blah
+
+  Dependencies:
+
+*/
+
+var pxDateTimeCommon = {
+
+  properties: {
+
+    /**
+     * Range selected in the time picker - as ISO8601 strings
+     *
+     * Format
+     * ```
+     * {
+     *    "from": "2013-01-07T22:44:30.652Z",
+     *    "to" : "2013-02-04T22:44:30.652Z"
+     * }
+     * ```
+     *
+     * This is a 2-way data-bindable object which will be changed when the user Submits their new selected range.
+     *
+     * @default the last week
+     */
+    range: {
+      type: Object,
+      notify: true,
+      reflectToAttribute: true, // need both notify & reflectToAttribute for bind-polymer to work
+      observer: '_setRange',
+      value: function() {
+        return {
+          from: moment().subtract(7, 'day').toISOString(),
+          to: moment().toISOString()
+        };
+      }
+    },
+
+    /**
+     * (optional)
+     *
+     * Set this attribute when you do want to allow future dates in the date range picker.
+     *
+     * If not set, then future dates will be disabled and unclickable in the date picker.
+     *
+     * Note: this only affects the visual calendar date picker, users can always type in dates/times or choose times that are in the future.
+     */
+    allowFutureDates: {
+      type: Boolean,
+      value: false
+    },
+
+    /**
+     * (optional)
+     *
+     * The preset date/time ranges to be displayed.  Defaults to: Last Day, Last Week, Last Year
+     *
+     *```
+     *   [
+     *    {
+     *      "displayText": "Last 5 Minutes",
+     *      "startDateTime": "2013-02-04T22:44:30.652Z",
+     *      "endDateTime": "2013-02-04T22:49:30.652Z"
+     *    },
+     *    {
+     *      "displayText": "Last 12 Hours",
+     *      "startDateTime": "2013-02-04T10:44:30.652Z",
+     *      "endDateTime": "2013-02-04T22:49:30.652Z"
+     *    }
+     *   ]
+     * ```
+     *
+     * @default no presets
+     */
+    presetRanges: Object,
+
+    /**
+     * Moment object start date & time
+     */
+    from: {
+      type: Object,
+      notify: true,
+      observer: '_updateFromWorkingCopy'
+    },
+
+    /**
+     * Moment object end date & time
+     */
+    to: {
+      type: Object,
+      notify: true,
+      observer: '_updateToWorkingCopy'
+    },
+
+    firstRangeDate: {
+      type: Object,
+      notify: true
+    },
+    /**
+     * Moment object end date & time
+     */
+    secondRangeDate: {
+      type: Object,
+      notify: true
+    },
+
+    /**
+     * A flag that tells us whether the Submit/Apply button is valid, and should be active.
+     * @private
+     */
+    isSubmitButtonValid: {
+      type: Boolean,
+      value: true,
+      notify: true
+    }
+  }
+};
+
+
+
+</script>
