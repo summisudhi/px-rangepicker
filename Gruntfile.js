@@ -104,6 +104,13 @@ module.exports = function(grunt) {
         options: {
           interrupt: true
         }
+      },
+      htmljs: {
+          files: ['*.html', '*.js'],
+          options: {
+              interrupt: true,
+              livereload: true
+          }
       }
     },
 
@@ -111,16 +118,50 @@ module.exports = function(grunt) {
       options: {
         open: '<%= depserveOpenUrl %>'
       }
+    },
+    webdriver: {
+        options: {
+            specFiles: ['test/*spec.js']
+        },
+        local: {
+            webdrivers: ['chrome']
+        }
+    },
+    concurrent: {
+        devmode: {
+            tasks: ['watch', 'depserve'],
+            options: {
+                logConcurrentOutput: true
+            }
+        }
     }
 
   });
 
-  require('load-grunt-tasks')(grunt);
+  // require('load-grunt-tasks')(grunt);
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-dep-serve');
+  grunt.loadNpmTasks('webdriver-support');
+  grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-concurrent');
 
   // Default task.
   grunt.registerTask('default', 'Basic build', [
     'sass',
     'autoprefixer'
+  ]);
+
+  grunt.registerTask('devmode', 'Development Mode', [
+        'concurrent:devmode'
+    ]);
+
+  grunt.registerTask('test', 'Test', [
+      'jshint',
+      'webdriver'
   ]);
 
   // First run task.
@@ -129,6 +170,7 @@ module.exports = function(grunt) {
     grunt.task.run('default');
     grunt.task.run('depserve');
   });
+
 
   grunt.registerTask('release', 'Release', [
     'clean',

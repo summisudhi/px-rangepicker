@@ -18,34 +18,6 @@ var pxDateTimeCommon = {
   properties: {
 
     /**
-     * Range selected in the time picker - as ISO8601 strings
-     *
-     * Format
-     * ```
-     * {
-     *    "from": "2013-01-07T22:44:30.652Z",
-     *    "to" : "2013-02-04T22:44:30.652Z"
-     * }
-     * ```
-     *
-     * This is a 2-way data-bindable object which will be changed when the user Submits their new selected range.
-     *
-     * @default the last week
-     */
-    range: {
-      type: Object,
-      notify: true,
-      reflectToAttribute: true, // need both notify & reflectToAttribute for bind-polymer to work
-      observer: '_setRange',
-      value: function() {
-        return {
-          from: moment().subtract(7, 'day').toISOString(),
-          to: moment().toISOString()
-        };
-      }
-    },
-
-    /**
      * (optional)
      *
      * Set this attribute when you do want to allow future dates in the date range picker.
