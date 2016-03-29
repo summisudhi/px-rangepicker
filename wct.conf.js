@@ -1,13 +1,14 @@
 module.exports = {
-  verbose: true,
-  plugins: {
-    local: {
-      browsers: ['chrome', 'firefox']
-    },
-    sauce: {
-             "disabled" : false,
-             "browsers": [
-             {
+    verbose: true,
+    plugins: {
+        local: {
+            browsers: ['chrome', 'firefox']
+        },
+        sauce: {
+          disabled: false,
+          "browsers": [
+          
+          {
           "browserName": "internet explorer",
           "platform": "Windows 7",
           "version": "10"
@@ -61,7 +62,7 @@ module.exports = {
         },
              
            
-{
+        {
           "browserName": "safari",
           "platform": "OS X 10.11",
           "version": "9"
@@ -83,16 +84,17 @@ module.exports = {
           "deviceName": "iPad 2",
           "deviceOrientation": "portrait"
           
+        },
+        {
+          "browserName": "iphone",
+          "platform": "OS X 10.10",
+          "version": "9.2",
+          "deviceName": "iPad 2",
+          "deviceOrientation": "portrait"
+          
         }
         
-        
       ]
-             
-           
-            
-            
         }
     }
 };
-
-
