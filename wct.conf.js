@@ -1,14 +1,5 @@
 module.exports = {
-<<<<<<< HEAD
-  verbose: true,
-  plugins: {
-    local: {
-      browsers: ['chrome', 'firefox']
-    },
-    sauce: {
-             "disabled" : false,
-             "browsers": [
-=======
+
     verbose: true,
     plugins: {
         local: {
@@ -31,7 +22,7 @@ module.exports = {
          {
           "browserName": "microsoftedge",
           "platform": "Windows 10"
->>>>>>> utc-hotfix
+},
          
          {
           "browserName": "safari",
@@ -44,12 +35,9 @@ module.exports = {
           "browserName": "chrome",
           "platform": "OS X 10.11",
           "version": "48"
-        }
+        },
              
-           
-<<<<<<< HEAD
 
-=======
         {
           "browserName": "safari",
           "platform": "OS X 10.11",
@@ -81,7 +69,7 @@ module.exports = {
           "deviceOrientation": "portrait"
           
         }
->>>>>>> utc-hotfix
+
         
       ]
         }
