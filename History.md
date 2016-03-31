@@ -1,4 +1,12 @@
-v0.1.6 
+v0.2.1
+==================
+* Fixed a bug in px-time-rangepicker where the to px-date-time-input was not receiving isUTC
+
+v0.2.0
+==================
+* add is-utc attribute
+
+v0.1.6
 ==================
 * Updated License
 
