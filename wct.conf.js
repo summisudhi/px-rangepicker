@@ -5,7 +5,7 @@ module.exports = {
             browsers: ['chrome', 'firefox']
         },
         sauce: {
-             "disabled" : false,
+             "disabled" : true,
              "browsers": [
              {
           "browserName": "internet explorer",
@@ -51,6 +51,11 @@ module.exports = {
           "browserName": "safari",
           "platform": "OS X 10.10",
           "version": "8"
+        },
+        {
+          "browserName": "chrome",
+          "platform": "OS X 10.10",
+          "version": "48"
         },
          
         
